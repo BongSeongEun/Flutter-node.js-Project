@@ -1,9 +1,8 @@
-import 'package:carrot_flutter/src/controller/feed_controller.dart';
+
 import 'package:carrot_flutter/src/model/feed_model.dart';
 import 'package:carrot_flutter/src/screens/feed/show.dart';
 import 'package:carrot_flutter/src/timeUtil.dart';
 import 'package:flutter/material.dart';
-import '../screens/feed/feed_edit.dart';
 import 'package:get/get.dart';
 
 const double _imageSize = 110;
@@ -15,8 +14,6 @@ class FeedListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final feedController = Get.put(FeedController());
-
     return InkWell(
       onTap: () {
         Get.to(() => FeedShow(item.id));
