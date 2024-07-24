@@ -11,14 +11,6 @@ final List<BottomNavigationBarItem> myTabs = [
     label: '홈',
   ),
   BottomNavigationBarItem(
-    icon: Icon(Icons.feed),
-    label: '동네',
-  ),
-  BottomNavigationBarItem(
-    icon: Icon(Icons.chat_bubble_outline_rounded),
-    label: '채팅',
-  ),
-  BottomNavigationBarItem(
     icon: Icon(Icons.person_outline),
     label: '마이',
   ),
@@ -26,8 +18,6 @@ final List<BottomNavigationBarItem> myTabs = [
 
 final List<Widget> myTabItems = [
   FeedIndex(),
-  Center(child: Text('동네')),
-  Center(child: Text('채팅')),
   Center(child: Text('마이')),
 ];
 
@@ -58,7 +48,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.black,
+        selectedItemColor: Color.fromARGB(255, 255, 198, 40),
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: true,
         items: myTabs,
@@ -72,29 +62,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return DefaultTabController(
-  //     length: myTabs.length,
-  //     child: Scaffold(
-  //       appBar: AppBar(
-  //         centerTitle: false,
-  //         title: Text('내 동네'),
-  //         actions: [
-  //           IconButton(
-  //             onPressed: () {},
-  //             icon: Icon(Icons.search),
-  //           ),
-  //           IconButton(
-  //             onPressed: () {},
-  //             icon: Icon(Icons.notifications_none_rounded),
-  //           ),
-  //         ],
-  //         bottom: TabBar(tabs: myTabs),
-  //       ),
-  //       body: TabBarView(children: myTabItems),
-  //     ),
-  //   );
-  // }
-

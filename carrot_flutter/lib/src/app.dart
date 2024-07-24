@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xffFF7E36),
+              backgroundColor: Color.fromARGB(255, 255, 198, 40),
               padding: const EdgeInsets.symmetric(vertical: 22),
               textStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               foregroundColor: Colors.white,
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           ),
           textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(
-            foregroundColor: const Color(0xffFF7E36),
+            foregroundColor: Color.fromARGB(255, 255, 198, 40),
             textStyle: const TextStyle(fontWeight: FontWeight.bold),
           )),
           inputDecorationTheme: const InputDecorationTheme(

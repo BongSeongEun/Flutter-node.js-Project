@@ -44,34 +44,13 @@ class _FeedIndexState extends State<FeedIndex> {
         },
         tooltip: '항목 추가',
         shape: const CircleBorder(),
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Color.fromARGB(255, 255, 198, 40),
         child: const Icon(Icons.add, color: Colors.white),
       ),
       appBar: AppBar(
-        centerTitle: false,
-        title: Text('내 동네'),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.search),
-          ),
-          IconButton(
-            onPressed: () {
-              showModalBottomSheet(
-                context: context,
-                builder: (context) {
-                  return MoreBottomModal(
-                    cancelTap: () {
-                      Navigator.pop(context);
-                    },
-                    hideTap: () {},
-                  );
-                },
-              );
-            },
-            icon: Icon(Icons.notifications_none_rounded),
-          ),
-        ],
+        centerTitle: true,
+        title: Image.asset('assets/images/logoo.png', width: 140, height: 140,),
+        backgroundColor: Color.fromARGB(255, 255, 198, 40)
       ),
       body: Column(children: [
         Container(
