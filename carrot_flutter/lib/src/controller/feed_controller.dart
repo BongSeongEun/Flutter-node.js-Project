@@ -69,12 +69,13 @@ class FeedController extends GetxController {
             .map((m) => FeedModel.parse(m as Map<String, dynamic>))
             .toList();
         feedList.assignAll(tmp);
-      } else if (json['data'] is Map<String, dynamic>) {
+      } /* else if (json['data'] is Map<String, dynamic>) {
         // 단일 객체인 경우 처리
         FeedModel singleFeed =
             FeedModel.parse(json['data'] as Map<String, dynamic>);
         feedList.assignAll([singleFeed]);
-      } else {
+      }*/
+      else {
         print(
             "Unexpected 'data' format: ${json['data']}"); // 'data' 필드의 실제 형식 출력
         throw Exception('Unexpected data format');

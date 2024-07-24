@@ -5,7 +5,7 @@ exports.index = async (req, res) => {
   }
 
   const userId = req.user.id;
-  const { page = 1, size = 20, keyword = "", category = "" } = req.query;
+  const { page = 1, size = 10, keyword = "", category = "" } = req.query;
   const trimmedKeyword = keyword.trim().toLowerCase();
   const trimmedCategory = category.trim().toLowerCase();
 
@@ -27,12 +27,10 @@ exports.index = async (req, res) => {
       itemsArray = [items];
     } else {
       console.error("Unexpected data format:", items);
-      return res
-        .status(500)
-        .json({
-          result: "error",
-          message: "Unexpected data format from repository",
-        });
+      return res.status(500).json({
+        result: "error",
+        message: "Unexpected data format from repository",
+      });
     }
 
     const modifiedItems = itemsArray.map((item) => ({
@@ -42,12 +40,10 @@ exports.index = async (req, res) => {
     res.json({ result: "ok", data: modifiedItems });
   } catch (error) {
     console.error("Error fetching feed:", error);
-    res
-      .status(500)
-      .json({
-        result: "error",
-        message: "Internal Server Error: " + error.message,
-      });
+    res.status(500).json({
+      result: "error",
+      message: "Internal Server Error: " + error.message,
+    });
   }
 };
 

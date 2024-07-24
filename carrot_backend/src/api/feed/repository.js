@@ -20,7 +20,7 @@ exports.index = async (page, size, keyword, category) => {
   params.push(`${size}`, `${offset}`); // size와 offset을 숫자로 전달
 
   try {
-    const [rows] = await pool.query(query, params);
+    const rows = await pool.query(query, params);
     return rows; // 배열로 반환됨
   } catch (error) {
     console.error("Database query error:", error);
