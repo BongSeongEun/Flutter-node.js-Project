@@ -57,11 +57,6 @@ class FeedListItem extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Text(
-                      item.price.toString(),
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
                   ],
                 ),
               )),

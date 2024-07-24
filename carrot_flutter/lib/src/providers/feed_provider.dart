@@ -15,11 +15,15 @@ class FeedProvider extends Provider {
     String price,
     String content,
     int? image,
+    String tag,
+    String category,
   ) async {
     final Map<String, dynamic> body = {
       'title': title,
       'price': price,
       'content': content,
+      'tag': tag,
+      'category': category,
     };
     if (image != null) {
       body['imageId'] = image.toString();
