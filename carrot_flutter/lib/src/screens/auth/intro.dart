@@ -14,68 +14,86 @@ class _IntroState extends State<Intro> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      children: [
-        Expanded(
-            child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Expanded(
-                  child: Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Image.network(
-                        'https://cdn.pixabay.com/photo/2023/07/10/03/42/carrot-illustration-8117291_1280.png',
-                        width: 300,
-                        height: 300),
-                    const SizedBox(height: 20),
-                    const Text(
-                      '당신 근처의 홍당무',
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 12),
-                    const Text(
-                      '동네라서 가능한 모든 것\n지금 내 동네를 선택하고 시작해보세요!',
-                      textAlign: TextAlign.center,
-                    )
-                  ],
-                ),
-              )),
-              Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      children: [
-                        ElevatedButton(
-                            onPressed: () {
-                              Get.to(() => const Register());
-                            },
-                            child: const Text('시작하기')),
-                        const SizedBox(height: 16),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text('이미 계정이 있나요?'),
-                            TextButton(
-                                onPressed: () {
-                                  Get.to(() => const Login());
-                                },
-                                child: const Text('로그인'))
-                          ],
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              )
-            ],
+      body: Stack(
+        children: <Widget>[
+          Container(
+            width: 360,
+            height: 325,
+            decoration: BoxDecoration(
+              color: Color.fromARGB(255, 255, 198, 40),
+              borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(50),
+              ),
+            ),
           ),
-        ))
-      ],
-    ));
+          ClipRRect(
+            borderRadius: BorderRadius.only(
+              bottomRight: Radius.circular(50),
+            ),
+            child: Image.asset(
+              'assets/images/intro_image.jpg',
+              width: double.infinity,
+              height: 300,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Align(
+            alignment: Alignment.topCenter,
+            child: Container(
+              margin: EdgeInsets.only(top: 350),
+              padding: EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text(
+                    '여행의 추억, 함께 나누는 감동\n\n당신의 이야기를 들려주세요 ✏️',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 255, 198, 40),
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Image.asset('assets/images/intro_logo.png'),
+                ],
+              ),
+            ),
+          ),
+          // 하단 버튼 및 링크
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              margin: EdgeInsets.all(16.0), // 하단 여백
+              padding: EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Get.to(() => const Register());
+                    },
+                    child: const Text('시작하기'),
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('이미 계정이 있나요?'),
+                      TextButton(
+                        onPressed: () {
+                          Get.to(() => const Login());
+                        },
+                        child: const Text('로그인'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:carrot_flutter/src/controller/user_controller.dart';
+import 'package:carrot_flutter/src/mypage.dart';
 import 'package:carrot_flutter/src/screens/feed/index.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,10 +18,9 @@ final List<BottomNavigationBarItem> myTabs = [
 ];
 
 final List<Widget> myTabItems = [
-  FeedIndex(),
-  Center(child: Text('마이')),
+  const FeedIndex(),
+  MyPage(),
 ];
-
 class Home extends StatefulWidget {
   const Home({super.key});
 

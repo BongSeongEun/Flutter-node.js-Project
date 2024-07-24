@@ -21,6 +21,8 @@ class FeedIndex extends StatefulWidget {
 class _FeedIndexState extends State<FeedIndex> {
   final feedController = Get.put(FeedController());
   int _currentPage = 1;
+  String _selectedCategory = '국내';
+
   Future<void> _onRefresh() async {
     _currentPage = 1;
     await feedController.feedIndex();
@@ -35,6 +37,13 @@ class _FeedIndexState extends State<FeedIndex> {
     return false;
   }
 
+  void _updateCategory(String category) {
+    setState(() {
+      _selectedCategory = category;
+    });
+    print(category);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,93 +53,79 @@ class _FeedIndexState extends State<FeedIndex> {
         },
         tooltip: '항목 추가',
         shape: const CircleBorder(),
-        backgroundColor: Color.fromARGB(255, 255, 198, 40),
+        backgroundColor: const Color.fromARGB(255, 255, 198, 40),
         child: const Icon(Icons.add, color: Colors.white),
       ),
       appBar: AppBar(
         centerTitle: true,
-        title: Image.asset('assets/images/logoo.png', width: 140, height: 140,),
-        backgroundColor: Color.fromARGB(255, 255, 198, 40)
-      ),
-      body: Column(children: [
-        Container(
-          margin: EdgeInsets.only(bottom: 20),
-          height: 40, // 높이를 적절히 조정하세요
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: [
-              SizedBox(width: 8),
-              CategoryButton(title: '국내 여행'),
-              SizedBox(width: 8),
-              CategoryButton(title: '아시아 여행'),
-              SizedBox(width: 8),
-              CategoryButton(title: '미주 여행'),
-              SizedBox(width: 8),
-              CategoryButton(title: '유럽 여행'),
-              SizedBox(width: 8),
-              CategoryButton(title: '대양주 여행'),
-              SizedBox(width: 8),
-            ],
-          ),
+        title: Image.asset(
+          'assets/images/logoo.png',
+          width: 140,
+          height: 140,
         ),
-        SizedBox(
-            height: 0,
+        backgroundColor: const Color.fromARGB(255, 255, 198, 40),
+      ),
+      body: Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.only(bottom: 20, top: 15),
+            height: 40, // Adjust the height as needed
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
-                SizedBox(
-                  width: 8,
-                ),
+                const SizedBox(width: 8),
                 CategoryButton(
                   title: '국내 여행',
+                  onPressed: () => _updateCategory('국내'),
+                  isSelected: _selectedCategory == '국내',
                 ),
-                SizedBox(
-                  width: 8,
-                ),
+                const SizedBox(width: 8),
                 CategoryButton(
                   title: '아시아 여행',
+                  onPressed: () => _updateCategory('아시아'),
+                  isSelected: _selectedCategory == '아시아',
                 ),
-                SizedBox(
-                  width: 8,
-                ),
+                const SizedBox(width: 8),
                 CategoryButton(
                   title: '미주 여행',
+                  onPressed: () => _updateCategory('미주'),
+                  isSelected: _selectedCategory == '미주',
                 ),
-                SizedBox(
-                  width: 8,
-                ),
+                const SizedBox(width: 8),
                 CategoryButton(
                   title: '유럽 여행',
+                  onPressed: () => _updateCategory('유럽'),
+                  isSelected: _selectedCategory == '유럽',
                 ),
-                SizedBox(
-                  width: 8,
-                ),
+                const SizedBox(width: 8),
                 CategoryButton(
                   title: '대양주 여행',
+                  onPressed: () => _updateCategory('대양주'),
+                  isSelected: _selectedCategory == '대양주',
                 ),
-                SizedBox(
-                  width: 8,
-                ),
+                const SizedBox(width: 8),
               ],
-            )),
-        Expanded(
-          child: Obx(
-            () => NotificationListener<ScrollNotification>(
-              onNotification: _onNotification,
-              child: RefreshIndicator(
-                onRefresh: _onRefresh,
-                child: ListView.builder(
-                  itemCount: feedController.feedList.length,
-                  itemBuilder: (context, index) {
-                    final item = feedController.feedList[index];
-                    return FeedListItem(item);
-                  },
+            ),
+          ),
+          Expanded(
+            child: Obx(
+              () => NotificationListener<ScrollNotification>(
+                onNotification: _onNotification,
+                child: RefreshIndicator(
+                  onRefresh: _onRefresh,
+                  child: ListView.builder(
+                    itemCount: feedController.feedList.length,
+                    itemBuilder: (context, index) {
+                      final item = feedController.feedList[index];
+                      return FeedListItem(item);
+                    },
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ]),
+        ],
+      ),
     );
   }
 }

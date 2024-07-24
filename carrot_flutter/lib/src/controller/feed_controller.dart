@@ -6,9 +6,9 @@ import 'package:get/get.dart';
 class FeedController extends GetxController {
   final feedProvider = Get.put(FeedProvider());
   RxList<FeedModel> feedList = <FeedModel>[].obs;
-  final Rx<FeedModel?> currentFeed = Rx<FeedModel?>(null); // 추가
+  final Rx<FeedModel?> currentFeed = Rx<FeedModel?>(null);
+  
   Future<void> feedShow(int id) async {
-    // 추가
     Map body = await feedProvider.show(id);
     if (body['result'] == 'ok') {
       currentFeed.value = FeedModel.parse(body['data']);
