@@ -1,6 +1,7 @@
 import 'package:carrot_flutter/src/controller/feed_controller.dart';
 import 'package:carrot_flutter/src/controller/file_controller.dart';
 import 'package:carrot_flutter/src/model/feed_model.dart';
+import 'package:carrot_flutter/src/screens/feed/show.dart';
 import 'package:carrot_flutter/src/widget/feed_image.dart';
 import 'package:carrot_flutter/src/widget/form/label_textField.dart';
 import 'package:flutter/material.dart';
@@ -19,17 +20,29 @@ class _FeedEditState extends State<FeedEdit> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
+  final TextEditingController _tagController = TextEditingController();
+
+  final _earth = ['국내', '아시아', '미주', '유럽', '대양주'];
+  String _selectedEarth = '';
+
   _submit() async {
     final result = await feedController.feedUpdate(
-      widget.model.id, // 변경
-      _titleController.text,
-      _priceController.text,
-      _contentController.text,
-      fileController.imageId.value,
-    );
+        widget.model.id, // 변경
+        _titleController.text,
+        _priceController.text,
+        _contentController.text,
+        fileController.imageId.value,
+        _tagController.text,
+        _selectedEarth);
     if (result) {
-      Get.back();
+      // Get.to(() => FeedShow(widget.model.id));
+      Navigator.pop(context);
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => FeedShow(widget.model.id)),
+      );
     }
+    print(result);
   }
 
   @override
@@ -39,6 +52,11 @@ class _FeedEditState extends State<FeedEdit> {
     _priceController.text = widget.model.price.toString();
     _contentController.text = widget.model.content;
     fileController.imageId.value = widget.model.imageId;
+    _tagController.text = widget.model.tag;
+    // _selectedEarth = widget.model.category;
+    setState(() {
+      _selectedEarth = widget.model.category;
+    });
   }
 
   @override
@@ -68,15 +86,28 @@ class _FeedEditState extends State<FeedEdit> {
                     controller: _titleController,
                   ),
                   LabelTextField(
-                      label: '가격',
-                      hintText: '가격을 입력해주세요.',
-                      controller: _priceController,
-                      keyboardType: TextInputType.phone),
-                  LabelTextField(
-                    label: '자세한 설명',
-                    hintText: '자세한 설명을 입력하세요',
+                    label: '후기',
+                    hintText: '후기를 입력해 주세요!',
                     controller: _contentController,
                   ),
+                  LabelTextField(
+                    label: '태그',
+                    hintText: '해시태그를 이용해 설명해주세요!',
+                    controller: _tagController,
+                  ),
+                  DropdownButton(
+                      value: _selectedEarth,
+                      items: _earth
+                          .map((e) => DropdownMenuItem(
+                                value: e,
+                                child: Text(e),
+                              ))
+                          .toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedEarth = value!;
+                        });
+                      })
                 ],
               ),
             ),

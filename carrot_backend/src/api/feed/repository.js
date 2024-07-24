@@ -27,7 +27,7 @@ exports.create = async (user, title, content, price, image, tag, category) => {
     `${user}`,
     `${title}`,
     `${content}`,
-    null,
+    0,
     `${imageId}`,
     `${tag}`,
     `${category}`,
@@ -45,13 +45,14 @@ exports.show = async (id) => {
   return result.length < 0 ? null : result[0];
 };
 
-exports.update = async (title, content, price, imgid, id) => {
-  const query = `UPDATE feed SET title = ? ,content = ?, price = ?, image_id = ? WHERE id = ?`;
+exports.update = async (title, content, price, imgid, id, tag, category) => {
+  const query = `UPDATE feed SET title = ? ,content = ?, image_id = ?, tag = ?, category = ? WHERE id = ?`;
   return await pool.query(query, [
     `${title}`,
     `${content}`,
-    `${price}`,
-    null,
+    `${imgid}`,
+    `${tag}`,
+    `${category}`,
     `${id}`,
   ]);
 };

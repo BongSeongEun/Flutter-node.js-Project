@@ -50,6 +50,7 @@ exports.update = async (req, res) => {
   const id = req.params.id;
   const body = req.body;
   const user = req.user;
+  const price = 0;
   const item = await repository.show(id);
   if (user.id !== item.user_id) {
     res.send({ result: "fail", message: "타인의글을수정할수없습니다." });
@@ -57,9 +58,11 @@ exports.update = async (req, res) => {
   const result = await repository.update(
     body.title,
     body.content,
-    body.price,
+    price,
     body.imageId,
-    id
+    id,
+    body.tag,
+    body.category
   );
   if (result.affectedRows > 0) {
     res.send({ result: "ok", data: body });

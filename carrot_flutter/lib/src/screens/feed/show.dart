@@ -1,4 +1,5 @@
 import 'package:carrot_flutter/src/controller/feed_controller.dart';
+import 'package:carrot_flutter/src/model/feed_model.dart';
 import 'package:carrot_flutter/src/screens/feed/feed_edit.dart';
 import 'package:carrot_flutter/src/widget/user_list_item.dart';
 import 'package:flutter/material.dart';
@@ -97,10 +98,8 @@ class _FeedShowState extends State<FeedShow> {
                 IconButton(
                   icon: Icon(Icons.edit, color: Colors.blue),
                   onPressed: () {
-                    /*
-                    Get.to(
-                        () => FeedEdit(feedController.currentFeed.value!.id));
-                        */
+                    Get.to(() => FeedEdit(
+                        feedController.currentFeed.value as FeedModel));
                   },
                 ),
                 IconButton(

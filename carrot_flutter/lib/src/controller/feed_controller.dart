@@ -31,20 +31,22 @@ class FeedController extends GetxController {
   }
 
   feedUpdate(int id, String title, String priceString, String content,
-      int? image) async {
-    int price = int.tryParse(priceString) ?? 0;
-    Map body =
-        await feedProvider.update(id, title, priceString, content, image);
+      int? image, String tag, String category) async {
+    int price = 0;
+    Map body = await feedProvider.update(
+        id, title, priceString, content, image, tag, category);
     if (body['result'] == 'ok') {
       int index = feedList.indexWhere((feed) => feed.id == id);
       if (index != -1) {
         FeedModel updatedFeed = feedList[index].copyWith(
-          title: title,
-          price: price,
-          content: content,
-          imageId: image,
-        );
+            title: title,
+            price: price,
+            content: content,
+            imageId: image,
+            tag: tag,
+            category: category);
         feedList[index] = updatedFeed;
+        print(updatedFeed);
       }
       return true;
     }

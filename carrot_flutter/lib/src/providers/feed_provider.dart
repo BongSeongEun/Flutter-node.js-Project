@@ -32,20 +32,17 @@ class FeedProvider extends Provider {
     return response.body;
   }
 
-  Future update(
-    int id,
-    String title,
-    String price,
-    String content,
-    int? image,
-  ) async {
+  Future update(int id, String title, String price, String content, int? image,
+      String? tag, String category) async {
     final Map<String, dynamic> body = {
       'title': title,
       'price': price,
       'content': content,
+      'tag': tag,
+      'category': category,
     };
     if (image != null) {
-      body['image'] = image.toString();
+      body['imageId'] = image.toString();
     }
     final response = await put('/api/feed/$id', body);
     print(response.bodyString);
