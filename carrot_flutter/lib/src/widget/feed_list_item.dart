@@ -29,7 +29,7 @@ class FeedListItem extends StatelessWidget {
               ClipRRect(
                   borderRadius: BorderRadius.circular(10.0),
                   child: Image.network(
-                    'https://cdn-icons-png.flaticon.com/512/8551/8551855.png',
+                    item.imageUrl,
                     width: _imageSize,
                     height: _imageSize,
                     fit: BoxFit.cover,
