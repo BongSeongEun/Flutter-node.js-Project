@@ -47,7 +47,7 @@ class _FeedShowState extends State<FeedShow> {
                     children: [
                       UserListItem(feedController.currentFeed.value!.writer!),
                       Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding: const EdgeInsets.all(20.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -84,23 +84,13 @@ class _FeedShowState extends State<FeedShow> {
           return Container(
             decoration: BoxDecoration(
                 border: Border(top: BorderSide(color: Colors.grey.shade200))),
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(15.0),
             child: Row(
               children: [
                 Expanded(
                   child: Text(
-                    "${feedController.currentFeed.value?.price}원",
+                    "${feedController.currentFeed.value?.price} 원",
                     style: Theme.of(context).textTheme.labelLarge,
-                  ),
-                ),
-                SizedBox(
-                  width: 100,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      textStyle: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                    onPressed: _chat,
-                    child: const Text("채팅하기"),
                   ),
                 ),
               ],

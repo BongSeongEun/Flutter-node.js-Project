@@ -18,9 +18,6 @@ class CategoryButton extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 2),
-            ),
             Visibility(
               visible: title != null,
               child: const SizedBox(width: 8),

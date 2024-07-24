@@ -26,85 +26,74 @@ class FeedListItem extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ClipRRect(
+              Container(
+                margin: EdgeInsets.only(left: 15),
+                child: ClipRRect(
                   borderRadius: BorderRadius.circular(10.0),
                   child: Image.network(
                     item.imageUrl,
                     width: _imageSize,
                     height: _imageSize,
                     fit: BoxFit.cover,
-                  )),
+                  ),
+                ),
+              ),
               Expanded(
                   child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: EdgeInsets.symmetric(horizontal: 15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       item.title,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(fontSize: 16),
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          '동네이름',
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                        Text(
-                          TimeUtil.parse(item.createdAt),
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ],
+                    SizedBox(width: 15),
+                    Text(
+                      item.content.toString(),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                    SizedBox(width: 15),
+                    Text(
+                      TimeUtil.parse(item.createdAt),
+                      style: TextStyle(color: Colors.grey, fontSize: 10),
                     ),
                     Text(
                       item.price.toString(),
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.grey),
                     ),
                   ],
                 ),
               )),
               IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.more_vert,
-                    color: Colors.grey,
-                    size: 16,
-                  ))
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.more_vert,
+                  color: Colors.grey,
+                  size: 16,
+                ),
+              ),
             ],
           ),
-          Positioned(
-            right: 10,
-            bottom: 0,
-            child: Row(
-              children: [
-                Icon(
-                  Icons.chat_bubble_outline,
-                  color: Colors.grey,
-                  size: 16,
-                ),
-                SizedBox(width: 2),
-                Text(
-                  '1',
-                  style: TextStyle(color: Colors.grey),
-                ),
-                SizedBox(
-                  width: 4,
-                ),
-                Icon(
-                  Icons.favorite_border,
-                  color: Colors.grey,
-                  size: 16,
-                ),
-                SizedBox(width: 2),
-                Text(
-                  '1',
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ],
+          Container(
+            margin: EdgeInsets.only(top: 120, bottom: 10),
+            child: Divider(
+              color: Color.fromARGB(255, 197, 197, 197),
+              thickness: 1.0,
+              indent: 15.0,
+              endIndent: 15.0,
             ),
-          )
+          ),
         ],
       ),
     );
