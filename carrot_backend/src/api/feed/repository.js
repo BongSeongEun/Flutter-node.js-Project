@@ -21,13 +21,12 @@ exports.index = async (page, size, keyword) => {
 
 exports.create = async (user, title, content, price, image, tag, category) => {
   const query = `INSERT INTO feed (user_id, title, content, price, image_id, tag, category) VALUES (?,?,?,?,?,?,?)`;
-  // image가 undefined인 경우 null로 설정
   const imageId = image === undefined ? null : image;
   return await pool.query(query, [
     `${user}`,
     `${title}`,
     `${content}`,
-    null,
+    0,
     `${imageId}`,
     `${tag}`,
     `${category}`,

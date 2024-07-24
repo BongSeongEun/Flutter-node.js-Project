@@ -46,6 +46,7 @@ class FeedListItem extends StatelessWidget {
                   children: [
                     Text(
                       item.title,
+                      maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -63,6 +64,11 @@ class FeedListItem extends StatelessWidget {
                     SizedBox(width: 15),
                     Text(
                       TimeUtil.parse(item.createdAt),
+                      style: TextStyle(color: Colors.grey, fontSize: 10),
+                    ),
+                    SizedBox(width: 15),
+                    Text(
+                      item.tag.toString(),
                       style: TextStyle(color: Colors.grey, fontSize: 10),
                     ),
                   ],

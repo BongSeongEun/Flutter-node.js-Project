@@ -16,12 +16,13 @@ class MyApp extends StatelessWidget {
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
               backgroundColor: Color.fromARGB(255, 255, 198, 40),
-              padding: const EdgeInsets.symmetric(vertical: 22),
               textStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               foregroundColor: Colors.white,
               minimumSize: const Size(double.infinity, 10),
+              fixedSize: Size(
+                  MediaQuery.of(context).size.width * 0.8, 50), // 버튼의 고정 크기 설정
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5),
+                borderRadius: BorderRadius.circular(20),
               ),
             ),
           ),
