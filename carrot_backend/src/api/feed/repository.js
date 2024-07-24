@@ -1,22 +1,31 @@
 const { pool } = require("../../database");
 
-exports.index = async (page, size, keyword) => {
+exports.index = async (page, size, keyword, category) => {
   const offset = (page - 1) * size;
   let query = `SELECT feed.*, u.name AS user_name, image_id
                 FROM feed
                 LEFT JOIN user u ON u.id = feed.user_id
-                LEFT JOIN files f ON feed.image_id = f.id`;
-  const params = [];
+                LEFT JOIN files f ON feed.image_id = f.id
+                WHERE category = ?`;
+
+  const params = [category];
+
   if (keyword) {
-    query += ` WHERE LOWER(feed.title) LIKE ? OR
-                    LOWER(feed.content) LIKE ?`;
+    query += ` AND (LOWER(feed.title) LIKE ? OR LOWER(feed.content) LIKE ?)`;
     const keywordParam = `%${keyword}%`;
     params.push(keywordParam, keywordParam);
   }
-  query += ` ORDER BY feed.id DESC LIMIT ? OFFSET ?`;
-  params.push(`${size}`, `${offset}`);
 
-  return await pool.query(query, params);
+  query += ` ORDER BY feed.id DESC LIMIT ? OFFSET ?`;
+  params.push(`${size}`, `${offset}`); // size와 offset을 숫자로 전달
+
+  try {
+    const rows = await pool.query(query, params);
+    return rows; // 배열로 반환됨
+  } catch (error) {
+    console.error("Database query error:", error);
+    throw error;
+  }
 };
 
 exports.create = async (user, title, content, price, image, tag, category) => {
@@ -44,13 +53,14 @@ exports.show = async (id) => {
   return result.length < 0 ? null : result[0];
 };
 
-exports.update = async (title, content, price, imgid, id) => {
-  const query = `UPDATE feed SET title = ? ,content = ?, price = ?, image_id = ? WHERE id = ?`;
+exports.update = async (title, content, price, imgid, id, tag, category) => {
+  const query = `UPDATE feed SET title = ? ,content = ?, image_id = ?, tag = ?, category = ? WHERE id = ?`;
   return await pool.query(query, [
     `${title}`,
     `${content}`,
-    `${price}`,
-    null,
+    `${imgid}`,
+    `${tag}`,
+    `${category}`,
     `${id}`,
   ]);
 };

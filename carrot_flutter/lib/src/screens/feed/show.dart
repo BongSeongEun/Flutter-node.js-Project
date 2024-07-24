@@ -1,4 +1,5 @@
 import 'package:carrot_flutter/src/controller/feed_controller.dart';
+import 'package:carrot_flutter/src/model/feed_model.dart';
 import 'package:carrot_flutter/src/screens/feed/feed_edit.dart';
 import 'package:carrot_flutter/src/widget/user_list_item.dart';
 import 'package:flutter/material.dart';
@@ -97,16 +98,13 @@ class _FeedShowState extends State<FeedShow> {
                 IconButton(
                   icon: Icon(Icons.edit, color: Colors.blue),
                   onPressed: () {
-                    /*
-                    Get.to(
-                        () => FeedEdit(feedController.currentFeed.value!.id));
-                        */
+                    Get.to(() => FeedEdit(
+                        feedController.currentFeed.value as FeedModel));
                   },
                 ),
                 IconButton(
                   icon: Icon(Icons.delete, color: Colors.red),
                   onPressed: () {
-                    /*
                     showDialog(
                       context: context,
                       builder: (context) {
@@ -117,8 +115,9 @@ class _FeedShowState extends State<FeedShow> {
                             TextButton(
                               onPressed: () {
                                 // 삭제 처리 로직
-                                feedController.deleteFeed(
+                                feedController.feedDelete(
                                     feedController.currentFeed.value!.id);
+                                Get.back();
                                 Navigator.pop(context);
                               },
                               child: Text('삭제'),
@@ -133,7 +132,6 @@ class _FeedShowState extends State<FeedShow> {
                         );
                       },
                     );
-                    */
                   },
                 ),
               ],

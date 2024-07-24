@@ -1,15 +1,52 @@
 const repository = require("./repository");
 exports.index = async (req, res) => {
+  if (!req.user || !req.user.id) {
+    return res.status(401).json({ result: "error", message: "Unauthorized" });
+  }
+
   const userId = req.user.id;
-  const { page = 1, size = 20, keyword = "" } = req.query;
+  const { page = 1, size = 10, keyword = "", category = "" } = req.query;
   const trimmedKeyword = keyword.trim().toLowerCase();
-  const items = await repository.index(page, size, trimmedKeyword);
-  const modifiedItems = items.map((item) => ({
-    ...item,
-    is_me: userId == item.user_id,
-  }));
-  res.json({ result: "ok", data: modifiedItems });
+  const trimmedCategory = category.trim().toLowerCase();
+
+  try {
+    const items = await repository.index(
+      page,
+      size,
+      trimmedKeyword,
+      trimmedCategory
+    );
+
+    console.log("Repository returned items:", items); // 디버깅을 위한 로그 유지
+
+    // 데이터가 배열인지 객체인지 확인
+    let itemsArray = [];
+    if (Array.isArray(items)) {
+      itemsArray = items;
+    } else if (typeof items === "object" && items !== null) {
+      itemsArray = [items];
+    } else {
+      console.error("Unexpected data format:", items);
+      return res.status(500).json({
+        result: "error",
+        message: "Unexpected data format from repository",
+      });
+    }
+
+    const modifiedItems = itemsArray.map((item) => ({
+      ...item,
+      is_me: userId === item.user_id,
+    }));
+    res.json({ result: "ok", data: modifiedItems });
+  } catch (error) {
+    console.error("Error fetching feed:", error);
+    res.status(500).json({
+      result: "error",
+      message: "Internal Server Error: " + error.message,
+    });
+  }
 };
+
 exports.store = async (req, res) => {
   const body = req.body;
   const user = req.user;
@@ -50,6 +87,7 @@ exports.update = async (req, res) => {
   const id = req.params.id;
   const body = req.body;
   const user = req.user;
+  const price = 0;
   const item = await repository.show(id);
   if (user.id !== item.user_id) {
     res.send({ result: "fail", message: "타인의글을수정할수없습니다." });
@@ -57,9 +95,11 @@ exports.update = async (req, res) => {
   const result = await repository.update(
     body.title,
     body.content,
-    body.price,
+    price,
     body.imageId,
-    id
+    id,
+    body.tag,
+    body.category
   );
   if (result.affectedRows > 0) {
     res.send({ result: "ok", data: body });

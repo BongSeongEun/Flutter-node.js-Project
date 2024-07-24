@@ -25,13 +25,19 @@ class _FeedIndexState extends State<FeedIndex> {
 
   Future<void> _onRefresh() async {
     _currentPage = 1;
-    await feedController.feedIndex();
+    await feedController.feedIndex(_selectedCategory);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _onRefresh(); // 초기 로드
   }
 
   bool _onNotification(ScrollNotification scrollInfo) {
     if (scrollInfo is ScrollEndNotification &&
         scrollInfo.metrics.extentAfter == 0) {
-      feedController.feedIndex(page: ++_currentPage);
+      feedController.feedIndex(_selectedCategory);
       return true;
     }
     return false;
@@ -41,7 +47,7 @@ class _FeedIndexState extends State<FeedIndex> {
     setState(() {
       _selectedCategory = category;
     });
-    print(category);
+    _onRefresh(); // 새로운 카테고리로 데이터 갱신
   }
 
   @override
