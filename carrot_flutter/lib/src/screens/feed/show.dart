@@ -105,7 +105,6 @@ class _FeedShowState extends State<FeedShow> {
                 IconButton(
                   icon: Icon(Icons.delete, color: Colors.red),
                   onPressed: () {
-                    /*
                     showDialog(
                       context: context,
                       builder: (context) {
@@ -116,8 +115,9 @@ class _FeedShowState extends State<FeedShow> {
                             TextButton(
                               onPressed: () {
                                 // 삭제 처리 로직
-                                feedController.deleteFeed(
+                                feedController.feedDelete(
                                     feedController.currentFeed.value!.id);
+                                Get.back();
                                 Navigator.pop(context);
                               },
                               child: Text('삭제'),
@@ -132,7 +132,6 @@ class _FeedShowState extends State<FeedShow> {
                         );
                       },
                     );
-                    */
                   },
                 ),
               ],
