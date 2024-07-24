@@ -29,11 +29,6 @@ class CategoryButton extends StatelessWidget {
                 style: const TextStyle(fontSize: 10, color: Color.fromARGB(255, 99, 99, 99)),
               ),
             )
-            // const SizedBox(width: 8),
-            // Text(
-            //   '알바',
-            //   style: TextStyle(fontSize: 14, color: Colors.grey[600]),
-            // )
           ],
         ),
       ),

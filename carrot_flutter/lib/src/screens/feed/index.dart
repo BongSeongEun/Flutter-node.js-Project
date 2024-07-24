@@ -51,7 +51,7 @@ class _FeedIndexState extends State<FeedIndex> {
       ),
       appBar: AppBar(
         centerTitle: true,
-        title: Image.network('https://github.com/BongSeongEun/Flutter-node.js-Project/blob/yapyap/carrot_flutter/assets/images/logoo.png'),
+        title: Image.asset('assets/images/logoo.png', width: 140, height: 140,),
         backgroundColor: Color.fromARGB(255, 255, 198, 40)
       ),
       body: Column(

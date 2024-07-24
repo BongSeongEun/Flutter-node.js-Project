@@ -1,4 +1,5 @@
 import 'package:carrot_flutter/src/controller/feed_controller.dart';
+import 'package:carrot_flutter/src/screens/feed/feed_edit.dart';
 import 'package:carrot_flutter/src/widget/user_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -92,6 +93,48 @@ class _FeedShowState extends State<FeedShow> {
                     "${feedController.currentFeed.value?.price} 원",
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
+                ),
+                IconButton(
+                  icon: Icon(Icons.edit, color: Colors.blue),
+                  onPressed: () {
+                    /*
+                    Get.to(
+                        () => FeedEdit(feedController.currentFeed.value!.id));
+                        */
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.delete, color: Colors.red),
+                  onPressed: () {
+                    /*
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text('삭제 확인'),
+                          content: Text('정말로 이 피드를 삭제하시겠습니까?'),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                // 삭제 처리 로직
+                                feedController.deleteFeed(
+                                    feedController.currentFeed.value!.id);
+                                Navigator.pop(context);
+                              },
+                              child: Text('삭제'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text('취소'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                    */
+                  },
                 ),
               ],
             ),
