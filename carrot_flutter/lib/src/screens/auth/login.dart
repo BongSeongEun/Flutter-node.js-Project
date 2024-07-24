@@ -1,6 +1,5 @@
 import 'package:carrot_flutter/src/controller/auth_controller.dart';
 import 'package:carrot_flutter/src/home.dart';
-import 'package:carrot_flutter/src/providers/auth_provider.dart';
 import 'package:carrot_flutter/src/widget/form/label_textField.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -51,17 +50,28 @@ class _LoginState extends State<Login> {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: ListView(
           children: [
-            LabelTextField(
+            Container(
+              margin: const EdgeInsets.only(top: 20),
+              child: LabelTextField(
                 label: "휴대폰 번호",
                 hintText: "휴대폰 번호를 입력해주세요",
-                controller: _phoneController),
-            LabelTextField(
-              label: "비밀번호",
-              hintText: "비밀번호를 입력해주세요",
-              controller: _passwordController,
-              isObscure: true,
+                controller: _phoneController,
+              ),
             ),
-            ElevatedButton(onPressed: _submit, child: const Text('로그인'))
+            Container(
+              margin: const EdgeInsets.only(top: 20),
+              child: LabelTextField(
+                label: "비밀번호",
+                hintText: "비밀번호를 입력해주세요",
+                controller: _passwordController,
+                isObscure: true,
+              ),
+            ),
+            const SizedBox(height: 350),
+            ElevatedButton(
+              onPressed: _submit,
+              child: const Text('로그인'),
+            ),
           ],
         ),
       ),

@@ -1,32 +1,31 @@
 import 'package:flutter/material.dart';
 
 class CategoryButton extends StatelessWidget {
-  final VoidCallback? onTap;
-  final IconData icon;
-  final String? title;
+  final VoidCallback onPressed;
+  final String title;
+  final bool isSelected;
 
-  const CategoryButton({this.onTap, required this.icon, this.title, super.key});
+  const CategoryButton({
+    required this.onPressed,
+    required this.title,
+    required this.isSelected,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onPressed,
       child: Container(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: Colors.grey[100],
+          color: isSelected
+              ? const Color.fromARGB(255, 255, 198, 40)
+              : const Color.fromARGB(255, 230, 230, 230),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 2),
-              child: Icon(
-                Icons.person_search,
-                size: 16,
-                color: Colors.grey[600],
-              ),
-            ),
             Visibility(
               visible: title != null,
               child: const SizedBox(width: 8),
@@ -35,14 +34,10 @@ class CategoryButton extends StatelessWidget {
               visible: title != null,
               child: Text(
                 "$title",
-                style: const TextStyle(fontSize: 14, color: Colors.grey),
+                style: const TextStyle(
+                    fontSize: 10, color: Color.fromARGB(255, 99, 99, 99)),
               ),
             )
-            // const SizedBox(width: 8),
-            // Text(
-            //   '알바',
-            //   style: TextStyle(fontSize: 14, color: Colors.grey[600]),
-            // )
           ],
         ),
       ),
