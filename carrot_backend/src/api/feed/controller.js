@@ -1,7 +1,7 @@
 const repository = require("./repository");
 exports.index = async (req, res) => {
   const userId = req.user.id;
-  const { page = 1, size = 10, keyword = "" } = req.query;
+  const { page = 1, size = 20, keyword = "" } = req.query;
   const trimmedKeyword = keyword.trim().toLowerCase();
   const items = await repository.index(page, size, trimmedKeyword);
   const modifiedItems = items.map((item) => ({
@@ -18,7 +18,9 @@ exports.store = async (req, res) => {
     body.title,
     body.content,
     body.price,
-    body.imageId
+    body.imageId,
+    body.tag,
+    body.category
   );
   if (result.affectedRows > 0) {
     res.send({ result: "ok", data: result.insertId });

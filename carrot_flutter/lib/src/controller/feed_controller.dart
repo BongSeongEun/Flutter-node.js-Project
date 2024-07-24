@@ -57,11 +57,13 @@ class FeedController extends GetxController {
     List<FeedModel> tmp =
         json['data'].map<FeedModel>((m) => FeedModel.parse(m)).toList();
     (page == 1) ? feedList.assignAll(tmp) : feedList.addAll(tmp);
+    print(json);
   }
 
-  Future<bool> feedCreate(
-      String title, String price, String content, int? image) async {
-    Map body = await feedProvider.store(title, price, content, image);
+  Future<bool> feedCreate(String title, String price, String content,
+      int? image, String tag, String category) async {
+    Map body =
+        await feedProvider.store(title, price, content, image, tag, category);
     if (body['result'] == 'ok') {
       await feedIndex();
       return true;

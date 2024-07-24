@@ -90,7 +90,7 @@ class _FeedShowState extends State<FeedShow> {
               children: [
                 Expanded(
                   child: Text(
-                    "${feedController.currentFeed.value?.price} 원",
+                    "${feedController.currentFeed.value?.tag}",
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                 ),

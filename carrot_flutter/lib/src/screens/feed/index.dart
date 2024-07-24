@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'dart:math';
 
 import 'package:carrot_flutter/src/controller/feed_controller.dart';
@@ -54,28 +52,27 @@ class _FeedIndexState extends State<FeedIndex> {
         title: Image.asset('assets/images/logoo.png', width: 140, height: 140,),
         backgroundColor: Color.fromARGB(255, 255, 198, 40)
       ),
-      body: Column(
-        children: [
-          Container(
-            margin: EdgeInsets.only(bottom: 20, top: 15),
-            height: 40, // 높이를 적절히 조정하세요
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                SizedBox(width: 8),
-                CategoryButton(title: '국내 여행'),
-                SizedBox(width: 8),
-                CategoryButton(title: '아시아 여행'),
-                SizedBox(width: 8),
-                CategoryButton(title: '미주 여행'),
-                SizedBox(width: 8),
-                CategoryButton(title: '유럽 여행'),
-                SizedBox(width: 8),
-                CategoryButton(title: '대양주 여행'),
-                SizedBox(width: 8),
-              ],
-            ),
+      body: Column(children: [
+        Container(
+          margin: EdgeInsets.only(bottom: 20),
+          height: 40, // 높이를 적절히 조정하세요
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              SizedBox(width: 8),
+              CategoryButton(title: '국내 여행'),
+              SizedBox(width: 8),
+              CategoryButton(title: '아시아 여행'),
+              SizedBox(width: 8),
+              CategoryButton(title: '미주 여행'),
+              SizedBox(width: 8),
+              CategoryButton(title: '유럽 여행'),
+              SizedBox(width: 8),
+              CategoryButton(title: '대양주 여행'),
+              SizedBox(width: 8),
+            ],
           ),
+        ),
         SizedBox(
             height: 0,
             child: ListView(

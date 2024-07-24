@@ -65,13 +65,6 @@ class FeedListItem extends StatelessWidget {
                       TimeUtil.parse(item.createdAt),
                       style: TextStyle(color: Colors.grey, fontSize: 10),
                     ),
-                    Text(
-                      item.price.toString(),
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.grey),
-                    ),
                   ],
                 ),
               )),

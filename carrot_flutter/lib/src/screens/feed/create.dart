@@ -17,16 +17,28 @@ class _FeedCreateState extends State<FeedCreate> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
+  final TextEditingController _tagController = TextEditingController();
+
+  final _earth = ['국내', '아시아', '미주', '유럽', '대양주'];
+  String _selectedEarth = '';
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      _selectedEarth = _earth[0];
+    });
+  }
+
   _submit() async {
     final result = await feedController.feedCreate(
-      _titleController.text,
-      _priceController.text,
-      _contentController.text,
-      fileController.imageId.value,
-    );
-    if (result) {
-      Get.back();
-    }
+        _titleController.text,
+        _priceController.text,
+        _contentController.text,
+        fileController.imageId.value,
+        _tagController.text,
+        _selectedEarth);
+    Get.back();
   }
 
   @override
@@ -56,15 +68,28 @@ class _FeedCreateState extends State<FeedCreate> {
                     controller: _titleController,
                   ),
                   LabelTextField(
-                      label: '가격',
-                      hintText: '가격을 입력해주세요.',
-                      controller: _priceController,
-                      keyboardType: TextInputType.phone),
-                  LabelTextField(
-                    label: '자세한 설명',
-                    hintText: '자세한 설명을 입력하세요',
+                    label: '후기',
+                    hintText: '후기를 입력해 주세요!',
                     controller: _contentController,
                   ),
+                  LabelTextField(
+                    label: '태그',
+                    hintText: '해시태그를 이용해 설명해주세요!',
+                    controller: _tagController,
+                  ),
+                  DropdownButton(
+                      value: _selectedEarth,
+                      items: _earth
+                          .map((e) => DropdownMenuItem(
+                                value: e,
+                                child: Text(e),
+                              ))
+                          .toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedEarth = value!;
+                        });
+                      })
                 ],
               ),
             ),
