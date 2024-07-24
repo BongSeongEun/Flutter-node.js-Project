@@ -49,24 +49,23 @@ class _FeedShowState extends State<FeedShow> {
                     children: [
                       UserListItem(feedController.currentFeed.value!.writer!),
                       Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: const EdgeInsets.all(30.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               feedController.currentFeed.value!.title,
-                              style: textTheme.bodyLarge,
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                             ),
-                            const SizedBox(height: 12),
-                            Text(
-                              '${feedController.currentFeed.value!.createdAt}',
-                              style: textTheme.bodyMedium
-                                  ?.copyWith(color: Colors.grey),
-                            ),
-                            const SizedBox(height: 12),
+                            const SizedBox(height: 20),
                             Text(
                               feedController.currentFeed.value!.content,
                               style: textTheme.bodyMedium,
+                            ),
+                            const SizedBox(height: 40),
+                            Text(
+                              '${feedController.currentFeed.value!.createdAt}',
+                              style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: Colors.grey),
                             ),
                           ],
                         ),
@@ -86,13 +85,13 @@ class _FeedShowState extends State<FeedShow> {
           return Container(
             decoration: BoxDecoration(
                 border: Border(top: BorderSide(color: Colors.grey.shade200))),
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(20.0),
             child: Row(
               children: [
                 Expanded(
                   child: Text(
                     "${feedController.currentFeed.value?.tag}",
-                    style: Theme.of(context).textTheme.labelLarge,
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal, color: Colors.grey),
                   ),
                 ),
                 IconButton(

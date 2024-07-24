@@ -64,13 +64,14 @@ class _FeedCreateState extends State<FeedCreate> {
                   const SizedBox(height: 16),
                   LabelTextField(
                     label: '제목',
-                    hintText: '제목',
+                    hintText: '제목을 입력해 주세요!',
                     controller: _titleController,
                   ),
                   LabelTextField(
                     label: '후기',
                     hintText: '후기를 입력해 주세요!',
                     controller: _contentController,
+                    maxLines: 5,
                   ),
                   LabelTextField(
                     label: '태그',

@@ -27,7 +27,7 @@ class _FeedEditState extends State<FeedEdit> {
 
   _submit() async {
     final result = await feedController.feedUpdate(
-        widget.model.id, // 변경
+        widget.model.id,
         _titleController.text,
         _priceController.text,
         _contentController.text,
@@ -35,7 +35,6 @@ class _FeedEditState extends State<FeedEdit> {
         _tagController.text,
         _selectedEarth);
     if (result) {
-      // Get.to(() => FeedShow(widget.model.id));
       Navigator.pop(context);
       Navigator.pushReplacement(
         context,
@@ -82,13 +81,14 @@ class _FeedEditState extends State<FeedEdit> {
                   const SizedBox(height: 16),
                   LabelTextField(
                     label: '제목',
-                    hintText: '제목',
+                    hintText: '제목을 입력해 주세요!',
                     controller: _titleController,
                   ),
                   LabelTextField(
                     label: '후기',
                     hintText: '후기를 입력해 주세요!',
                     controller: _contentController,
+                    maxLines: 5,
                   ),
                   LabelTextField(
                     label: '태그',
@@ -115,7 +115,7 @@ class _FeedEditState extends State<FeedEdit> {
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: ElevatedButton(
                 onPressed: _submit,
-                child: const Text('작성 완료'),
+                child: const Text('수정 완료'),
               ),
             ),
           ],

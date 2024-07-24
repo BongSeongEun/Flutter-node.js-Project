@@ -11,8 +11,8 @@ class FeedImage extends StatelessWidget {
     return Row(
       children: [
         Container(
-          width: 80.0,
-          height: 80.0,
+          width: 350.0,
+          height: 150.0,
           decoration: BoxDecoration(
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.circular(10),
