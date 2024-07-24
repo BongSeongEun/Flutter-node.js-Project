@@ -1,13 +1,24 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'provider.dart';
 
 class FeedProvider extends Provider {
-  Future<Map> index([int page = 1]) async {
+  Future<Map<String, dynamic>> index(String? category) async {
     Response response = await get(
       '/api/feed',
-      query: {'page': '$page'},
+      query: {'category': category},
     );
-    return response.body;
+
+    print("API response: ${response.body}");
+
+    if (response.body is String) {
+      return Map<String, dynamic>.from(jsonDecode(response.body));
+    } else if (response.body is Map) {
+      return Map<String, dynamic>.from(response.body);
+    } else {
+      throw Exception('Unexpected response format');
+    }
   }
 
   Future<Map> store(
