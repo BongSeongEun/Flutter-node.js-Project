@@ -44,7 +44,7 @@
 ***
 
 ## ✨ 프로젝트 개발자
-|사진|사진|사진|
+|<img src="https://github.com/user-attachments/assets/af59d41f-9493-429f-b55d-bc3ee7d92e7f" width="200" height="200"/>|<img src="https://github.com/user-attachments/assets/4a919325-6d13-47aa-ba7c-9abeb3eceb79" width="200" height="200"/>|<img src="https://github.com/user-attachments/assets/736f3c97-7b00-425f-a3c2-c7e54baf0450" width="200" height="200"/>|
 |:---:|:---:|:---:|
 |팀장|팀원|팀원|
 |채서윤|봉성은|조연주|
