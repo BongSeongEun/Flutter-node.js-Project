@@ -53,7 +53,9 @@
 ***
 
 ## 📺 화면 구성
-
+|Intro|Main|Post|Creat&Edit|
+|:---:|:---:|:---:|:---:|
+|<img src="https://github.com/user-attachments/assets/83bfa139-a973-4ca5-9ec7-dc70071ef950" width="150" />|<img src="https://github.com/user-attachments/assets/b53636f9-d589-4997-8cd2-17ff8e8896ab" width="150" />|<img src="https://github.com/user-attachments/assets/f4ef6da3-0bb1-4b84-8a52-49e447f9d6d9" width="150" />|<img src="https://github.com/user-attachments/assets/bcedc164-30a9-4cc9-8e29-b43d72a95761" width="150" />|
 
 ***
 
